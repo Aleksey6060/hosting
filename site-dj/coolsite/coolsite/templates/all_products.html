@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Все цветы{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Все цветы</h1>
+    <p>Выберите идеальный букет для любого случая!</p>
+</div>
+<div class="product-grid">
+    {% for flower in flowers %}
+    <div class="product-item card">
+        {% if flower.photo %}
+        <img src="{{ flower.photo.url }}" alt="{{ flower.name }}">
+        {% endif %}
+        <h3>{{ flower.name }}</h3>
+        <p>{{ flower.description }}</p>
+        <p class="price">Цена: {{ flower.price }} ₽</p>
+        <a href="{% url 'flower_detail' flower.pk %}" class="btn btn-primary">Подробнее</a>
+    </div>
+    {% empty %}
+    <p class="card">Цветов пока нет.</p>
+    {% endfor %}
+</div>
+<a href="{% url 'home' %}" class="btn btn-cta">Вернуться на главную</a>
+{% endblock %}

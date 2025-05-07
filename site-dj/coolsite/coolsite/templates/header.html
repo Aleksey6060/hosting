@@ -1,0 +1,33 @@
+<header>
+    <h1>Лох цветочный</h1>
+</header>
+<nav>
+    <div class="main-nav">
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'about' %}">О компании</a>
+        <a href="{% url 'contact' %}">Контакты</a>
+        <a href="{% url 'all_products' %}">Все товары</a>
+        <a href="{% url 'cart_detail' %}">Корзина</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Выход</a>
+        {% else %}
+            <a href="{% url 'login' %}">Авторизация</a>
+            <a href="{% url 'signup' %}">Регистрация</a>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="admin-nav">
+        <h3>Управление</h3>
+        <a href="{% url 'category_list' %}">Категории</a>
+        <a href="{% url 'flower_list' %}">Цветы</a>
+        <a href="{% url 'supplier_list' %}">Поставщики</a>
+        <a href="{% url 'delivery_list' %}">Доставка</a>
+        <a href="{% url 'review_list' %}">Отзывы</a>
+        <a href="{% url 'promotion_list' %}">Акции</a>
+        <a href="{% url 'shop_list' %}">Магазины</a>
+        <a href="{% url 'employee_list' %}">Сотрудники</a>
+        <a href="{% url 'order_list' %}">Заказы</a>
+    </div>
+    {% endif %}
+</nav>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b3b9301d4eb0e8',t:'MTc0NjQ4NDY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>

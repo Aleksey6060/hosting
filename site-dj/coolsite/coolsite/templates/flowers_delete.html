@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Удалить цветок{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Удалить цветок "{{ object.name }}"</h1>
+</div>
+<div class="card delete-page">
+    <p class="warning">Вы уверены, что хотите удалить цветок "{{ object.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'flower_list' %}" class="btn btn-secondary">Вернуться к списку цветов</a>
+</div>
+{% endblock %}

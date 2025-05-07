@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Цветы{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Цветы</h1>
+    <p>Управляйте цветами и букетами в вашем магазине</p>
+</div>
+<a href="{% url 'flower_create' %}" class="btn btn-cta">Добавить цветок</a>
+<ul>
+    {% for flower in flowers %}
+    <li>
+        {% if flower.photo %}
+        <img src="{{ flower.photo.url }}" alt="{{ flower.name }}" style="max-width: 100px; height: auto;">
+        {% endif %}
+        <a href="{% url 'flower_detail' flower.pk %}">{{ flower.name }}</a>
+        <a href="{% url 'flower_update' flower.pk %}" class="btn btn-edit">Редактировать</a>
+        <a href="{% url 'flower_delete' flower.pk %}" class="btn btn-danger">Удалить</a>
+    </li>
+    {% empty %}
+    <li class="card">Цветов пока нет.</li>
+    {% endfor %}
+</ul>
+
+{% if is_paginated %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">Предыдущая</a>
+    {% endif %}
+    <span>Страница {{ page_obj.number }} из {{ paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Следующая</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Вернуться на главную</a>
+{% endblock %}

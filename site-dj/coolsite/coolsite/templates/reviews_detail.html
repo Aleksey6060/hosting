@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ review.flower.name }} - Отзыв{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Отзыв на "{{ review.flower.name }}"</h1>
+</div>
+<div class="card detail-page">
+    <p><strong>Клиент:</strong> {{ review.customer_name }}</p>
+    <p><strong>Оценка:</strong> {{ review.rating }}/5</p>
+    <p><strong>Комментарий:</strong> {{ review.comment|default:"Без комментария" }}</p>
+    <p><strong>Цветок:</strong> <a href="{% url 'flower_detail' review.flower.pk %}">{{ review.flower.name }}</a></p>
+</div>
+<div class="actions">
+    <a href="{% url 'review_list' %}" class="btn btn-secondary">Вернуться к списку отзывов</a>
+    <a href="{% url 'review_update' review.pk %}" class="btn btn-edit">Редактировать</a>
+    <a href="{% url 'review_delete' review.pk %}" class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}

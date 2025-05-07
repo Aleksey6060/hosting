@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Удалить отзыв{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Удалить отзыв на "{{ object.flower.name }}"</h1>
+</div>
+<div class="card delete-page">
+    <p class="warning">Вы уверены, что хотите удалить отзыв от "{{ object.customer_name }}" на "{{ object.flower.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'review_list' %}" class="btn btn-secondary">Вернуться к списку отзывов</a>
+</div>
+{% endblock %}

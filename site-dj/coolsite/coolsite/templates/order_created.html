@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Заказ создан{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <h1>Ваш заказ успешно создан!</h1>
+</div>
+<div class="card">
+    <p><strong>Номер заказа:</strong> {{ order.id }}</p>
+    <p><strong>Способ доставки:</strong> {{ order.get_delivery_method_display }}</p>
+    <p><strong>Адрес:</strong> {{ order.address|default:"Не указан" }}</p>
+    <p><strong>Общая сумма:</strong> {{ order.total_price }} руб.</p>
+    <div class="actions">
+        <a href="{% url 'all_products' %}" class="btn btn-secondary">Вернуться к покупкам</a>
+    </div>
+</div>
+{% endblock %}

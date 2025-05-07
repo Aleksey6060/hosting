@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load cart_filters %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <h1>Оформление заказа</h1>
+</div>
+{% if cart %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Общая стоимость</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>
+                    {% if item.flower.photo %}
+                    <img src="{{ item.flower.photo.url }}" alt="{{ item.flower.name }}" class="flower-photo">
+                    {% else %}
+                    <span class="text-muted">Нет фото</span>
+                    {% endif %}
+                </td>
+                <td>{{ item.flower.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }} руб.</td>
+                <td>{% with total=item.quantity|mul:item.price %}{{ total }} руб.{% endwith %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="order-total"><strong>Итого:</strong> {{ cart.get_total_price }} руб.</p>
+    <div class="order-form">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="messages">
+                                <li class="error">{{ error }}</li>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-cta">Подтвердить заказ</button>
+        </form>
+    </div>
+{% else %}
+    <div class="card">
+        <p>Ваша корзина пуста.</p>
+        <a href="{% url 'all_products' %}" class="btn btn-secondary">Посмотреть товары</a>
+    </div>
+{% endif %}
+{% endblock %}

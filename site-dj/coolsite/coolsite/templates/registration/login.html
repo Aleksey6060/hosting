@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <h1>Авторизация</h1>
+</div>
+<form method="post" class="order-form">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="messages">
+                        <li class="error">{{ error }}</li>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-cta">Войти</button>
+</form>
+{% endblock %}

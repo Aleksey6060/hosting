@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if form.instance.pk %}Редактировать магазин{% else %}Добавить магазин{% endif %}
+{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{% if form.instance.pk %}Редактировать магазин{% else %}Добавить новый магазин{% endif %}</h1>
+</div>
+<div class="card form-page">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-cta">Сохранить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'shop_list' %}" class="btn btn-secondary">Вернуться к списку магазинов</a>
+</div>
+{% endblock %}

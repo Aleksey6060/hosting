@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Список заказов{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <h1>Список заказов</h1>
+</div>
+{% if orders %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>ID заказа</th>
+                <th>Пользователь</th>
+                <th>Способ доставки</th>
+                <th>Адрес</th>
+                <th>Общая сумма</th>
+                <th>Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.username }}</td>
+                <td>{{ order.get_delivery_method_display }}</td>
+                <td>{{ order.address|default:"Не указан" }}</td>
+                <td>{{ order.total_price }} руб.</td>
+                <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        {% endif %}
+    </div>
+    {% endif %}
+{% else %}
+    <div class="card">
+        <p>Заказов пока нет.</p>
+    </div>
+{% endif %}
+{% endblock %}

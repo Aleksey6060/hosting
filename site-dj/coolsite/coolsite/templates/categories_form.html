@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if form.instance.pk %}Редактировать категорию{% else %}Создать категорию{% endif %}
+{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{% if form.instance.pk %}Редактировать категорию{% else %}Создать категорию{% endif %}</h1>
+</div>
+<div class="card form-page">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-cta">{% if form.instance.pk %}Сохранить{% else %}Создать{% endif %}</button>
+    </form>
+</div>
+<a href="{% url 'category_list' %}" class="btn btn-secondary">Вернуться к списку категорий</a>
+{% endblock %}

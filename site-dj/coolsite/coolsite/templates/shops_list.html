@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Магазины{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Магазины</h1>
+    <p>Управляйте магазинами вашей сети</p>
+</div>
+<a href="{% url 'shop_create' %}" class="btn btn-cta">Добавить магазин</a>
+<ul>
+    {% for shop in shops %}
+    <li>
+        <a href="{% url 'shop_detail' shop.pk %}">{{ shop.name }}</a>
+        <a href="{% url 'shop_update' shop.pk %}" class="btn btn-edit">Редактировать</a>
+        <a href="{% url 'shop_delete' shop.pk %}" class="btn btn-danger">Удалить</a>
+    </li>
+    {% empty %}
+    <li class="card">Магазинов пока нет.</li>
+    {% endfor %}
+</ul>
+
+{% if is_paginated %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">Предыдущая</a>
+    {% endif %}
+    <span>Страница {{ page_obj.number }} из {{ paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Следующая</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Вернуться на главную</a>
+{% endblock %}

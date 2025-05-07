@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ promotion.title }}{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{{ promotion.title }}</h1>
+</div>
+<div class="card detail-page">
+    {% if promotion.banner %}
+    <img src="{{ promotion.banner.url }}" alt="{{ promotion.title }}" class="promotion-image">
+    {% endif %}
+    <p><strong>Описание:</strong> {{ promotion.description|default:"Нет описания" }}</p>
+    <p><strong>Скидка:</strong> {{ promotion.discount }}%</p>
+    <p><strong>Дата начала:</strong> {{ promotion.start_date|date:"d.m.Y" }}</p>
+    <p><strong>Дата окончания:</strong> {{ promotion.end_date|date:"d.m.Y" }}</p>
+</div>
+<div class="actions">
+    <a href="{% url 'promotion_list' %}" class="btn btn-secondary">Вернуться к списку акций</a>
+    <a href="{% url 'promotion_update' promotion.pk %}" class="btn btn-edit">Редактировать</a>
+    <a href="{% url 'promotion_delete' promotion.pk %}" class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}

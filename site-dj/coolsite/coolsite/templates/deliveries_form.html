@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if form.instance.pk %}Редактировать службу доставки{% else %}Добавить новую службу доставку{% endif %}
+{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{% if form.instance.pk %}Редактировать службу доставки{% else %}Добавить новую службу доставки{% endif %}</h1>
+</div>
+<div class="card form-page">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-cta">Сохранить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'delivery_list' %}" class="btn btn-secondary">Вернуться к списку служб доставки</a>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Добро пожаловать в Цветочный магазин!</h1>
+    <p>Мы предлагаем свежие цветы для любого случая!</p>
+</div>
+<div class="feature-grid">
+    <div class="card feature-item">
+        <i class="fas fa-leaf"></i>
+        <h3>Свежие цветы</h3>
+        <p>Только свежие цветы от лучших поставщиков.</p>
+    </div>
+    <div class="card feature-item">
+        <i class="fas fa-truck"></i>
+        <h3>Быстрая доставка</h3>
+        <p>Доставка в день заказа по всей стране.</p>
+    </div>
+    <div class="card feature-item">
+        <i class="fas fa-heart"></i>
+        <h3>Индивидуальный подход</h3>
+        <p>Соберём букет по вашим пожеланиям!</p>
+    </div>
+</div>
+<a href="{% url 'all_products' %}" class="btn btn-cta">Посмотреть все цветы</a>
+{% endblock %}

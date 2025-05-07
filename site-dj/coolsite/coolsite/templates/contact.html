@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Контакты</h1>
+    <p>Мы всегда рады ответить на ваши вопросы!</p>
+</div>
+<div class="card">
+    <h3>Свяжитесь с нами</h3>
+    <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <p>Телефон: +7 (495) 123-45-67</p>
+    </div>
+    <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <p>Email: <a href="mailto:info@flowerjoy.ru">info@flowerjoy.ru</a></p>
+    </div>
+    <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+    </div>
+</div>
+<a href="{% url 'home' %}" class="btn btn-cta">Вернуться на главную</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if form.instance.pk %}Редактировать отзыв{% else %}Добавить отзыв{% endif %}
+{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{% if form.instance.pk %} Редактировать отзыв{% else %}Добавить новый отзыв{% endif %}</h1>
+</div>
+<div class="card form-page">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-cta">Сохранить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'review_list' %}" class="btn btn-secondary">Вернуться к списку отзывов</a>
+</div>
+{% endblock %}

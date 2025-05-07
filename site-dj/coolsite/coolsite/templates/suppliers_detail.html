@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ supplier.name }}{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{{ supplier.name }}</h1>
+</div>
+<div class="card detail-page">
+    <p><strong>Email:</strong> {{ supplier.contact_email|default:"Не указан" }}</p>
+    <p><strong>Телефон:</strong> {{ supplier.phone|default:"Не указан" }}</p>
+    <p><strong>Адрес:</strong> {{ supplier.address|default:"Не указан" }}</p>
+</div>
+<div class="actions">
+    <a href="{% url 'supplier_list' %}" class="btn btn-secondary">Вернуться к списку поставщиков</a>
+    <a href="{% url 'supplier_update' supplier.pk %}" class="btn btn-edit">Редактировать</a>
+    <a href="{% url 'supplier_delete' supplier.pk %}" class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}

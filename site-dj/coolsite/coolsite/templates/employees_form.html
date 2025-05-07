@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if form.instance.pk %}Редактировать сотрудника{% else %}Добавить сотрудника{% endif %}
+{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{% if form.instance.pk %}Редактировать сотрудника{% else %}Добавить нового сотрудника{% endif %}</h1>
+</div>
+<div class="card form-page">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-cta">Сохранить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'employee_list' %}" class="btn btn-secondary">Вернуться к списку сотрудников</a>
+</div>
+{% endblock %}

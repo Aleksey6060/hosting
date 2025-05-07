@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ delivery.name }}{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{{ delivery.name }}</h1>
+</div>
+<div class="card detail-page">
+    <p><strong>Стоимость:</strong> {{ delivery.cost }} рублей</p>
+    <p><strong>Примерное время доставки:</strong> {{ delivery.estimated_time }}</p>
+</div>
+<div class="actions">
+    <a href="{% url 'delivery_list' %}" class="btn btn-secondary">Вернуться к списку служб доставки</a>
+    <a href="{% url 'delivery_update' delivery.pk %}" class="btn btn-edit">Редактировать</a>
+    <a href="{% url 'delivery_delete' delivery.pk %}" class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}

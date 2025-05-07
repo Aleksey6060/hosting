@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Удалить акцию{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>Удалить акцию "{{ object.title }}"</h1>
+</div>
+<div class="card delete-page">
+    <p class="warning">Вы уверены, что хотите удалить акцию "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+<div class="actions">
+    <a href="{% url 'promotion_list' %}" class="btn btn-secondary">Вернуться к списку акций</a>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ category.name }}{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{{ category.name }}</h1>
+</div>
+<div class="card detail-page">
+    <p><strong>Описание:</strong> {{ category.description|default:"Нет описания" }}</p>
+</div>
+<a href="{% url 'category_list' %}" class="btn btn-secondary">Вернуться к списку категорий</a>
+<a href="{% url 'category_update' category.pk %}" class="btn btn-edit">Редактировать</a>
+<a href="{% url 'category_delete' category.pk %}" class="btn btn-danger">Удалить</a>
+{% endblock %}

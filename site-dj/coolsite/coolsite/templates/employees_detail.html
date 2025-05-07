@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ employee.name }}{% endblock %}
+{% block content %}
+<div class="banner">
+    <h1>{{ employee.name }}</h1>
+</div>
+<div class="card detail-page">
+    <p><strong>Должность:</strong> {{ employee.position }}</p>
+    <p><strong>Магазин:</strong> <a href="{% url 'shop_detail' employee.shop.pk %}">{{ employee.shop.name }}</a></p>
+</div>
+<div class="actions">
+    <a href="{% url 'employee_list' %}" class="btn btn-secondary">Вернуться к списку сотрудников</a>
+    <a href="{% url 'employee_update' employee.pk %}" class="btn btn-edit">Редактировать</a>
+    <a href="{% url 'employee_delete' employee.pk %}" class="btn btn-danger">Удалить</a>
+</div>
+{% endblock %}
